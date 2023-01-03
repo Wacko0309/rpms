@@ -1,17 +1,14 @@
 package com.inext.rpms.vo;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.inext.rpms.entity.ClientInfo;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) //–hŽ~null‰ñœä
+@JsonInclude(JsonInclude.Include.NON_NULL) // –hŽ~null‰ñœä
 public class ClientInfoRes {
-	
+
 	private ClientInfo clientInfo;
-	
+
 	private String message;
-	
-	
 
 	public ClientInfoRes() {
 
@@ -37,6 +34,5 @@ public class ClientInfoRes {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	
+
 }

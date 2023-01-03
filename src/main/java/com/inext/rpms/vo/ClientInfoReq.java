@@ -1,31 +1,28 @@
 package com.inext.rpms.vo;
 
-import java.util.Calendar;
-
+import java.time.LocalDate;
 
 public class ClientInfoReq {
-	
+
 	private String lastName;
-	
+
 	private String firstName;
-		
-	private Calendar birth;
-	
+
+	private LocalDate birth;
+
 	private String email;
-	
+
 	private String pwd;
-	
+
 	private String confirmPwd;
-	
+
 	private String verifyCode;
-	
-	
+
 	public ClientInfoReq() {
 
 	}
-	
-	public ClientInfoReq(String lastName, String firstName, Calendar birth, String email, String pwd) {
-		super();
+
+	public ClientInfoReq(String lastName, String firstName, LocalDate birth, String email, String pwd) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.birth = birth;
@@ -33,7 +30,8 @@ public class ClientInfoReq {
 		this.pwd = pwd;
 	}
 
-	public ClientInfoReq(String lastName, String firstName, Calendar birth, String email, String pwd, String confirmPwd) {
+	public ClientInfoReq(String lastName, String firstName, LocalDate birth, String email, String pwd,
+			String confirmPwd) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.birth = birth;
@@ -58,11 +56,11 @@ public class ClientInfoReq {
 		this.firstName = firstName;
 	}
 
-	public Calendar getBirth() {
+	public LocalDate getBirth() {
 		return birth;
 	}
 
-	public void setBirth(Calendar birth) {
+	public void setBirth(LocalDate birth) {
 		this.birth = birth;
 	}
 
@@ -97,6 +95,5 @@ public class ClientInfoReq {
 	public void setVerifyCode(String verifyCode) {
 		this.verifyCode = verifyCode;
 	}
-	
-	
+
 }

@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import jakarta.servlet.http.HttpSession;
 
 @SpringBootTest
 public class MailTest {
@@ -19,14 +18,9 @@ public class MailTest {
 	void sendToGmail() {
 		SimpleMailMessage message = new SimpleMailMessage();
 		
-		HttpSession httpSession = null;
-		
-		@SuppressWarnings("null")
-		String verifyCode = httpSession.getAttribute("verifyCode").toString();
-		
 		message.setTo("vocaliod1015417@gmail.com");
 		message.setSubject("検証コード");
-		message.setText("検証コードは" + verifyCode);
+		message.setText("検証コードは" );
 
 		mailSender.send(message);
 	}
