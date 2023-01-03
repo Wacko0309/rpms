@@ -65,6 +65,7 @@ public class ClientServiceImpl implements ClientService {
 		
 		// 送信
 		mailSender.send(message);
+		//
 	}
 
 	@Override
