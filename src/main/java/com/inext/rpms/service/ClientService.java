@@ -14,12 +14,4 @@ public interface ClientService {
 	// アカウント検証
 	public ClientInfoRes activeAccount(ClientInfoReq req);
 
-	// ログイン
-	public ClientInfoRes login(ClientInfoReq req);
-
-	// パスワードアシスタントのアカウント検証
-	public ClientInfoRes checkAccount(ClientInfoReq req);
-
-	// パスワード更新
-	public ClientInfoRes pwdUpdate(String email, String pwd);
 }

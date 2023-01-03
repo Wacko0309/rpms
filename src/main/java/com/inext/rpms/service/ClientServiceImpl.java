@@ -1,6 +1,5 @@
 package com.inext.rpms.service;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -81,94 +80,6 @@ public class ClientServiceImpl implements ClientService {
 		clientDao.save(clientInfo);
 
 		return res;
-	}
-
-	@Override
-	// ログイン
-	public ClientInfoRes login(ClientInfoReq req) {
-
-		ClientInfoRes res = new ClientInfoRes();
-
-		// ログイン資料が入力しないとメッセージを返事する
-		//　Eメール
-		if (!StringUtils.hasText(req.getEmail())) {
-
-			res.setMessage(ClientServiceRtnCode.EMAIL_FAILURE_001.getMessage());
-			return res;
-
-		//　パスワード
-		} else if (!StringUtils.hasText(req.getPwd())) {
-
-			res.setMessage(ClientServiceRtnCode.PASSWORD_FAILUE_002.getMessage());
-			return res;
-
-		}
-
-		// Eメールでアカウント資料をDBから取り出す
-		Optional<ClientInfo> clientInfoOp = clientDao.findById(req.getEmail());
-		
-		// DB中でアカウントの存在を確認
-		// 入力したパスワードをDBのパスワードと確認、不一致とメッセージを返事する
-		if (clientInfoOp.isEmpty() || !req.getPwd().equals(clientInfoOp.get().getPwd())) {
-
-			res.setMessage(ClientServiceRtnCode.PASSWORD_FAILUE_001.getMessage());
-			return res;
-
-		}
-		return res;
-	}
-
-	@Override
-	// パスワードアシスタント
-	public ClientInfoRes checkAccount(ClientInfoReq req) {
-
-		ClientInfoRes res = new ClientInfoRes();
-
-		// 資料が入力しないとメッセージを返事する
-		if (checkParams(req) != null) {
-
-			return checkParams(req);
-		}
-		
-		// Eメールでアカウント資料をDBから取り出す
-		Optional<ClientInfo> clientInfoOp = clientDao.findById(req.getEmail());
-
-		// DB中でアカウントの存在を確認
-		if (clientInfoOp.isEmpty()) {
-
-			res.setMessage(ClientServiceRtnCode.ACCOUNT_FAILURE_003.getMessage());
-			return res;
-			
-		}
-		
-		ClientInfo clientInfo = clientInfoOp.get();
-
-		// 入力値をDB資料と確認、不一致とメッセージを返事する
-		if (!clientInfo.getLastName().equals(req.getLastName()) || !clientInfo.getFirstName().equals(req.getFirstName())
-				|| !clientInfo.getBirth().equals(req.getBirth())) {
-
-			res.setMessage(ClientServiceRtnCode.ACCOUNT_FAILURE_003.getMessage());
-
-			return res;
-		}
-		
-		return res;
-	}
-
-	
-	@Override
-	// パスワード更新
-	public ClientInfoRes pwdUpdate(String email, String pwd) {
-
-		//　Eメールでアカウント資料をDBから取り出す
-		Optional<ClientInfo> clientInfoOp = clientDao.findById(email);
-		ClientInfo clientInfo = clientInfoOp.get();
-
-		//　新たなパスワードをDBの資料を更新する
-		clientInfo.setPwd(pwd);
-		clientDao.save(clientInfo);
-
-		return new ClientInfoRes();
 	}
 
 	// ===========================================================================
