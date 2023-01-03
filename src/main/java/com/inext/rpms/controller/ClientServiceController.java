@@ -183,7 +183,7 @@ public class ClientServiceController {
 		} else if (!req.getPwd().matches(pwdFormat)) {
 
 			res.setMessage(ClientServiceRtnCode.PASSWORD_FAILUE_004.getMessage());
-			return res;
+			return res; 
 
 			// パスワードと確認パスポートが不一致の場合はメッセージを返事する
 		} else if (!req.getPwd().equals(req.getConfirmPwd())) {
